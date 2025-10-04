@@ -18,7 +18,7 @@ const OfficerAnalyticsDashboard = () => {
   const data3  = useContext(OfficerContext);
 
   // Current officer ka data (tumhare authentication se aayega)
-  const currentOfficerId = "68b322f41dd3d461a34790fa"; // Example officer ID
+ // Example officer ID
 
   // API functions
   const fetchOfficerData = async () => {
@@ -218,9 +218,10 @@ const OfficerAnalyticsDashboard = () => {
 
   const calculateWorkerPerformance = (complaints, workers) => {
     console.log("ok",workers);
+    console.log(complaints,"ok");
     return workers.map(worker => {
       const workerComplaints = complaints.filter(complaint => 
-        complaint.assignedWorker === worker._id
+        complaint.assignedWorker?._id === worker._id
       );
       console.log(complaints,worker._id);
       const completed = workerComplaints.filter(c => c.status === 'Resolved').length;

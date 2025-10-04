@@ -131,8 +131,9 @@ const Navbar = () => {
       { name: 'Complaints', path: '/complaintpage', icon: DocumentTextIcon },
       { name: 'Workers', path: '/worker', icon: UserIcon },
       
-      { name: 'Upcoming Features', path: '/upcoming', icon: StarIcon },
+      { name: 'Heatmap', path: '/Heatmap', icon: StarIcon },
       {name:'Analytic DashBoard',path:'/analytic',icon:StarIcon}
+      
       
     ],
     guest: [

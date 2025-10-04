@@ -28,7 +28,7 @@ const complaint = await Complaint.create({
     user,
     name,
     description:data.description,
-    media:imageurl[0],
+    media:imageurl,
     location:{
         lat,
         lon
@@ -112,7 +112,8 @@ export const usercomplaint = async(req,res) => {
 export const filtercompalint = async (req, res) => {
   const { department, startDate, endDate } = req.query;
   console.log(department);
-  const filter = { department };
+  console.log(req.user._id,"op");
+  const filter = { department ,officer:req.user._id};
   if (startDate) {
     filter.createdAt = { $gte: new Date(startDate) };
   }
@@ -134,7 +135,7 @@ export const filtercompalint = async (req, res) => {
   const { department, startDate, problem_type } = req.query;
   console.log(problem_type);
   
-  const filter = { department };
+  const filter = { department ,officer:req.user._id};
   
   if (startDate) {
     filter.createdAt = { $gte: new Date(startDate) };

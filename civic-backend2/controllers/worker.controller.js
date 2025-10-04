@@ -45,7 +45,7 @@ export const getallworker = async(req,res) => {
     },
     department
   })
-  console.log(worker);
+  console.log(worker,"ok");
   if(!worker){
     res.status(400).json({message:"worker not found"});
   }

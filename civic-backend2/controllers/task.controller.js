@@ -7,7 +7,7 @@ import verifyTaskToken from '../middlewares/verifytasktoken.js';
 import workerModel from '../models/worker.model.js';
 import { compareCleaning } from '../service/gemini.service.js';
 import { upload } from '../middlewares/multer.middleware.js';
-
+import { uploadoncloudinary } from '../utils/cloudinary.js';
 
 // Setup multer for proof uploads
 
@@ -58,15 +58,20 @@ export const postUploadProof = [
         // reported is a Cloudinary URL, proofPath is local file path
         const proofPath = req.file.buffer;
 
+
         // Check if reported is a Cloudinary URL (contains cloudinary.com)
         
           compareResult = true;
        
       }
+const imageurl =   await uploadoncloudinary(req.file.buffer);
 
+
+console.log(imageurl)
       // If verification success -> mark complaint Resolved
       if (compareResult) {
         const com = await Complaint.findByIdAndUpdate(task._id, { status: 'Resolved', resolvedAt: new Date() });
+        
         const worker = await workerModel.findOneAndUpdate({_id:com.assignedWorker},{
           status:"available"
         },{new:true});

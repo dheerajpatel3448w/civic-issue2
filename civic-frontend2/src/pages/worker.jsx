@@ -64,7 +64,7 @@ export default function WorkerForm() {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState(null);
   const [geolocating, setGeolocating] = useState(false);
-  const [features, setFeatures] = useState(["Active Noise Cancellation"]);
+  const [features, setFeatures] = useState([""]);
   const [activeStep, setActiveStep] = useState(1);
   const featureRef = useRef(null);
 

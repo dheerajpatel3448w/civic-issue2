@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+
+/* Leaflet CSS */
+@import 'leaflet/dist/leaflet.css';
+
+/* Critical Map Container Styles */
+#map-container {
+  height: 100% !important;
+  width: 100% !important;
+  position: absolute !important;
+}
+
+.leaflet-container {
+  height: 100% !important;
+  width: 100% !important;
+  border-radius: 1rem !important;
+}
+
+/* Fix for map tiles */
+.leaflet-layer,
+.leaflet-control-zoom-in,
+.leaflet-control-zoom-out,
+.leaflet-control-attribution {
+  border-radius: 1rem !important;
+}
+
+/* Marker styles */
+.officer-marker,
+.complaint-marker {
+  background: transparent !important;
+  border: none !important;
+}
+
+/* Popup styles */
+.leaflet-popup-content-wrapper {
+  border-radius: 0.75rem !important;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1) !important;
+}
+
+.leaflet-popup-content {
+  margin: 12px !important;
+  line-height: 1.4 !important;
+}

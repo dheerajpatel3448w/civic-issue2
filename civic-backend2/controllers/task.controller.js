@@ -6,18 +6,13 @@ import Complaint from '../models/complaint.model.js';
 import verifyTaskToken from '../middlewares/verifytasktoken.js';
 import workerModel from '../models/worker.model.js';
 import { compareCleaning } from '../service/gemini.service.js';
-
+import { upload } from '../middlewares/multer.middleware.js';
 
 
 // Setup multer for proof uploads
-const uploadDir = path.join(process.cwd(), 'uploads', 'proofs');
-if (!fs.existsSync(uploadDir)) fs.mkdirSync(uploadDir, { recursive: true });
 
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => cb(null, uploadDir),
-  filename: (req, file, cb) => cb(null, `${Date.now()}-${file.originalname}`)
-});
-export const upload = multer({ storage });
+
+
 
 /**
  * GET task details (token-protected)
@@ -61,7 +56,7 @@ export const postUploadProof = [
 
       if (reported) {
         // reported is a Cloudinary URL, proofPath is local file path
-        const proofPath = req.file.path;
+        const proofPath = req.file.buffer;
 
         // Check if reported is a Cloudinary URL (contains cloudinary.com)
         
